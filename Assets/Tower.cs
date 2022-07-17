@@ -9,7 +9,8 @@ public class Tower : MonoBehaviour {
     [SerializeField] private float attackRate = 2.0f;
     
     [SerializeField] private ParticleSystem projectileParticle;
-
+    [SerializeField] private Transform towerRotation;
+    
     public Transform currentTarget;
 
     private ParticleSystem.EmissionModule _emissionModule;
@@ -30,7 +31,7 @@ public class Tower : MonoBehaviour {
                 currentTarget.transform.position,
                 gameObject.transform.position);
             if (distanceToEnemy <= attackRange) {
-                gameObject.transform.LookAt(currentTarget);
+                towerRotation.LookAt(currentTarget);
                 _emissionModule.enabled = true;
             } else {
                 _emissionModule.enabled = false;
@@ -64,5 +65,9 @@ public class Tower : MonoBehaviour {
             return enemy1;
         }
     }
-    
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }
