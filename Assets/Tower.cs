@@ -7,8 +7,10 @@ public class Tower : MonoBehaviour {
     
     [SerializeField] private float attackRange = 30.0f;
     [SerializeField] private float attackRate = 2.0f;
+    [SerializeField] private float bulletDamage = 1.0f;
     
     [SerializeField] private ParticleSystem projectileParticle;
+    [SerializeField] private BulletProperties _bulletProperties;
     [SerializeField] private Transform towerRotation;
     
     public Transform currentTarget;
@@ -18,6 +20,7 @@ public class Tower : MonoBehaviour {
     private void Start() {
         _emissionModule = projectileParticle.emission;
         _emissionModule.rateOverTime = attackRate;
+        _bulletProperties.bulletDamage = bulletDamage;
     }
 
     private void Update() {

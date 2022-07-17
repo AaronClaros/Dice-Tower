@@ -6,14 +6,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public float health = 10.0f;
-
-    private void OnParticleCollision(GameObject other) {
-        if (other.GetComponent<BulletProperties>()) {
-            Debug.Log("hola");
-        }
-        health--;
+    
+    public void TakeDamage(float incomingDamage) {
+        health -= incomingDamage;
         if (health <= 0) {
-            Die();    
+            Die();
         }
     }
 
